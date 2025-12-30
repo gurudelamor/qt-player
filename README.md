@@ -17,8 +17,6 @@
 <!-- [Reproductor Sinergia/Doraemon](https://youtu.be/P1juQCHdCqg) -->
 
 <a href="https://youtu.be/P1juQCHdCqg" target="_blank">
-<img src="https://img.youtube.com/vi/P1juQCHdCqg/0.jpg" alt="Watch the video" width="500" border="10" />
+<img src="https://img.youtube.com/vi/P1juQCHdCqg/0.jpg" alt="Watch the video" width="1200" border="10" />
 </a>
 ----------------------------------------------------------------------
-
-[![Reproductor Sinergia/Doraemon]({https://img.youtube.com/vi/P1juQCHdCqg/0.jpg})]({[video-url](https://youtu.be/P1juQCHdCqg)} "Reproductor Sinergia/Doraemon")
