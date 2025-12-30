@@ -13,9 +13,4 @@
 ![Reproductor Sinergia/Doraemon](views/inirepromax.png)
 
 ------------------------------------------------------------------------------------
-
-<video width="320" height="240" controls>
-    <source src=views/repro.mp4" type="video/mp4">
-</video>
-
-<!-- ![Reproductor Sinergia/Doraemon](views/repro.mp4) -->
+![Reproductor Sinergia/Doraemon](https://youtu.be/P1juQCHdCqg)
