@@ -180,27 +180,28 @@ class PlayerController(QMainWindow, Ui_MainPlayer):
     # -------------------------------
     # Handlers de UI: playlist y archivos
     # -------------------------------
+
     def _onAddFiles(self):
         dialog = QFileDialog(self, "Seleccionar archivos multimedia 🎶 🎞")
         dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)
         dialog.setOption(QFileDialog.Option.DontUseNativeDialog, False)
-        
-        # --- CAMBIO AQUÍ: Establecer el directorio en "Este Equipo" ---
-        # En Windows, una cadena vacía o "/" a veces no es suficiente para "Este equipo".
-        # Usamos QDir para obtener la ruta raíz o simplemente una cadena vacía con el modo adecuado.
-        dialog.setDirectory("::{20D04FE0-3AEA-1069-A2D8-08002B30309D}") 
-        # --------------------------------------------------------------
+
+        # Abrir en raíz del sistema (C:\ en Windows ::{20D04FE0-3AEA-1069-A2D8-08002B30309D})
+        # dialog.setDirectory(QDir.rootPath())
+        dialog.setDirectory("::{20D04FE0-3AEA-1069-A2D8-08002B30309D}")
 
         filtros = (
             "Todos los medios (*.mp4 *.avi *.mkv *.mov *.mp3 *.wav *.ogg *.flac *.aac *.m4a);;"
             "Video (*.mp4 *.avi *.mkv *.mov);;"
             "Audio (*.mp3 *.wav *.ogg *.flac *.aac *.m4a)"
         )
-        dialog.setNameFilter(VALID_MEDIA_EXTS)
+        dialog.setNameFilter(filtros)
 
         if dialog.exec():
             file_paths = dialog.selectedFiles()
+
             for file_path in file_paths:
+                # ✅ Usar la constante VALID_MEDIA_EXTS
                 if file_path.lower().endswith(VALID_MEDIA_EXTS):
                     if file_path not in self.player_service.playlist:
                         self.player_service.load(file_path)
@@ -213,14 +214,16 @@ class PlayerController(QMainWindow, Ui_MainPlayer):
                 self.ltLista.setCurrentIndex(self.playlist_model.index(0, 0))
                 self.player_service.set_current_index(0)
 
+
     def _onAddFolders(self):
         dialog = QFileDialog(self, "Seleccionar carpetas de música/video 📁")
         dialog.setFileMode(QFileDialog.FileMode.Directory)
         dialog.setOption(QFileDialog.Option.ReadOnly, True)
         dialog.setOption(QFileDialog.Option.DontUseNativeDialog, True)
-        
-        # Iniciar en "Este equipo"
-        dialog.setDirectory("::{20D04FE0-3AEA-1069-A2D8-08002B30309D}") 
+
+        # Abrir en raíz del sistema (C:\ en Windows)
+        # dialog.setDirectory(QDir.rootPath())
+        dialog.setDirectory("::{20D04FE0-3AEA-1069-A2D8-08002B30309D}")
 
         # Forzar selección múltiple
         for view_type in [QListView, QTreeView]:
@@ -230,38 +233,78 @@ class PlayerController(QMainWindow, Ui_MainPlayer):
 
         if dialog.exec():
             folder_paths = dialog.selectedFiles()
-            
-            # Bloqueamos actualizaciones visuales para ganar velocidad
             self.playlist_model.layoutAboutToBeChanged.emit()
-            
+
             for folder in folder_paths:
-                # Normalizamos la ruta para evitar problemas con carpetas del sistema (Escritorio, etc.)
                 folder = os.path.normpath(folder)
-                
                 if os.path.isdir(folder):
                     for root, _, files in os.walk(folder):
                         for file in files:
                             if file.lower().endswith(VALID_MEDIA_EXTS):
                                 full_path = os.path.normpath(os.path.join(root, file))
-                                
                                 if full_path not in self.player_service.playlist:
-                                    # 1. Cargar en el servicio
                                     self.player_service.load(full_path)
-                                    
-                                    # 2. Crear ítem y añadirlo como FILA (appendRow)
-                                    # Usamos appendRow porque es una lista vertical
                                     item = QStandardItem(file)
                                     item.setData(full_path, Qt.UserRole)
                                     item.setEditable(False)
                                     self.playlist_model.appendRow(item)
 
-            # Notificamos que la UI ya puede refrescarse
             self.playlist_model.layoutChanged.emit()
 
-            # Autoselección si es la primera carga
             if self.playlist_model.rowCount() > 0 and self.player_service.current_index == -1:
                 self.ltLista.setCurrentIndex(self.playlist_model.index(0, 0))
                 self.player_service.set_current_index(0)
+
+
+    # def _onAddFolders(self):
+    #     dialog = QFileDialog(self, "Seleccionar carpetas de música/video 📁")
+    #     dialog.setFileMode(QFileDialog.FileMode.Directory)
+    #     dialog.setOption(QFileDialog.Option.ReadOnly, True)
+    #     dialog.setOption(QFileDialog.Option.DontUseNativeDialog, True)
+        
+    #     # Iniciar en "Este equipo"
+    #     dialog.setDirectory("::{20D04FE0-3AEA-1069-A2D8-08002B30309D}") 
+
+    #     # Forzar selección múltiple
+    #     for view_type in [QListView, QTreeView]:
+    #         view = dialog.findChild(view_type)
+    #         if view:
+    #             view.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
+
+    #     if dialog.exec():
+    #         folder_paths = dialog.selectedFiles()
+            
+    #         # Bloqueamos actualizaciones visuales para ganar velocidad
+    #         self.playlist_model.layoutAboutToBeChanged.emit()
+            
+    #         for folder in folder_paths:
+    #             # Normalizamos la ruta para evitar problemas con carpetas del sistema (Escritorio, etc.)
+    #             folder = os.path.normpath(folder)
+                
+    #             if os.path.isdir(folder):
+    #                 for root, _, files in os.walk(folder):
+    #                     for file in files:
+    #                         if file.lower().endswith(filtros):
+    #                             full_path = os.path.normpath(os.path.join(root, file))
+                                
+    #                             if full_path not in self.player_service.playlist:
+    #                                 # 1. Cargar en el servicio
+    #                                 self.player_service.load(full_path)
+                                    
+    #                                 # 2. Crear ítem y añadirlo como FILA (appendRow)
+    #                                 # Usamos appendRow porque es una lista vertical
+    #                                 item = QStandardItem(file)
+    #                                 item.setData(full_path, Qt.UserRole)
+    #                                 item.setEditable(False)
+    #                                 self.playlist_model.appendRow(item)
+
+    #         # Notificamos que la UI ya puede refrescarse
+    #         self.playlist_model.layoutChanged.emit()
+
+    #         # Autoselección si es la primera carga
+    #         if self.playlist_model.rowCount() > 0 and self.player_service.current_index == -1:
+    #             self.ltLista.setCurrentIndex(self.playlist_model.index(0, 0))
+    #             self.player_service.set_current_index(0)
 
     def _onRemoveSelected(self):
         index: QModelIndex = self.ltLista.currentIndex()
