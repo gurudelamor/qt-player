@@ -13,4 +13,5 @@
 ![Reproductor Sinergia/Doraemon](views/inirepromax.png)
 
 ------------------------------------------------------------------------------------
+<!-- ![Reproductor Sinergia/Doraemon](https://youtu.be/P1juQCHdCqg) -->
 ![Reproductor Sinergia/Doraemon](https://youtu.be/P1juQCHdCqg)
