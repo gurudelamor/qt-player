@@ -16,8 +16,10 @@
 <!-- ![Reproductor Sinergia/Doraemon](https://youtu.be/P1juQCHdCqg) -->
 <!-- [Reproductor Sinergia/Doraemon](https://youtu.be/P1juQCHdCqg) -->
 
-<a href=https://youtu.be/P1juQCHdCqg" target="_blank">
-<img src="https://img.youtube.com/vi/P1juQCHdCqg/0.jpg" alt="Watch the video" width="240" height="180" border="10" />
+<a href="https://youtu.be/P1juQCHdCqg" target="_blank">
+<img src="https://img.youtube.com/vi/P1juQCHdCqg/0.jpg" alt="Watch the video" border="10" />
 </a>
+
+<!-- <a href="" title="Link Title"><img src="{image-url}" alt="Alternate Text" /></a> -->
 
 <!-- [![Watch the video](https://img.youtube.com/vi/P1juQCHdCqg/0.jpg)](https://www.youtube.com/watch?v=P1juQCHdCqg) -->
