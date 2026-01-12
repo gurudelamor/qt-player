@@ -26,11 +26,14 @@
 
 
 ## NOTAS
-### Playlist
+### widget Playlist
 - la interfaz y metodos de la playlist estan ahora en un paquete
 - agregue los metodos que faltaban de (seleccion primero y ultimo) el de agregar lo hare luego (necesitare el dialog)
 - en el archivo `test_widgets` esta la prueba con el **playlist**
 - [ ] agregar archivos
+
+### widget Player
+- agregue el widget player (solo tiene funciones basicas)
 
 
 ### Interfaz
@@ -48,10 +51,11 @@ la estructura actual y los archivos que ya estoy usando (ire agregando y reusand
 - - ui_playlist_widget.ui
 
 - services
-- - ui_playlist_widget
-- - - __init__.py
-- - - ui_playlist_widget.py
-- - - ui_playlist_widget.ui
+├── playlist_widget
+|   ├── __init__.py
+│   ├── ui_playlist_widget.py
+│   └── ui_playlist_widget.ui
+└── widget_player
+    └── __init__.py
 ```
-
 
