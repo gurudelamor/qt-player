@@ -26,36 +26,57 @@
 
 
 ## NOTAS
+### window frameless
+- la ventana principal ya tiene metodos basicos
+- en el archivo `tests_so` esta la prueba con el **window frameless**
+- agregue hotkey "Ctrl + Q" para salir
+- [ ] otros hotkeys ... 
+
+
 ### widget Playlist
 - la interfaz y metodos de la playlist estan ahora en un paquete
 - agregue los metodos que faltaban de (seleccion primero y ultimo) el de agregar lo hare luego (necesitare el dialog)
-- en el archivo `test_widgets` esta la prueba con el **playlist**
+- en el archivo `tests_so` esta la prueba con el **playlist**
 - [ ] agregar archivos
 
+
 ### widget Player
-- agregue el widget player (solo tiene funciones basicas)
+- he creado el widget player (solo tiene funciones basicas)
 
 
 ### Interfaz
 - corte la playlist y lo coloque en un widget independiente
 - cambie un label por un textedit (lbMeta)
+- lo dividi en partes la interfaz
 
 
 ## ESTRUCTURA
 la estructura actual y los archivos que ya estoy usando (ire agregando y reusando otras)
+- todo lo que cambie esta en la carpeta "sin_orden" de manera temporal mientras se define la estructura.
+
+---
+
+por el momento la estructura esta asi, solo es temporal (puede cambiarse despues)
 
 ```
-- views
-- - ui_main_player.py
-- - ui_main_player.ui
-- - ui_playlist_widget.ui
+.
+├── widget_body
+│   └── ui_widget_body.ui
+├── widget_control
+│   └── ui_widget_control.ui
+├── widget_player
+│   └── __init__.py
+├── widget_playlist
+│   ├── __init__.py
+│   ├── ui_widget_playlist.py
+│   └── ui_widget_playlist.ui
+└── window_frameless
+    ├── __init__.py
+    ├── ui_main_window.py
+    └── ui_main_window.ui
 
-- services
-├── playlist_widget
-|   ├── __init__.py
-│   ├── ui_playlist_widget.py
-│   └── ui_playlist_widget.ui
-└── widget_player
-    └── __init__.py
+6 directories, 9 files
 ```
+
+
 
