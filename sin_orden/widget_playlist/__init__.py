@@ -2,7 +2,7 @@ from pathlib import Path
 from PySide6.QtWidgets import QWidget
 from PySide6.QtCore import Qt, QSortFilterProxyModel
 from PySide6.QtGui import QStandardItem, QStandardItemModel
-from services.playlist_widget.ui_playlist_widget import Ui_PlaylistWidget
+from sin_orden.widget_playlist.ui_widget_playlist import Ui_WidgetPlaylist
 
 
 class Model(QStandardItemModel):
@@ -11,10 +11,10 @@ class Model(QStandardItemModel):
         self.__cnf_Model()
 
     def __cnf_Model(self):
-        self.ITEMS = []
         self.ORDERED:bool = False
-        self.INDEX = -1
         self.HISTORY:list = []
+        # self.ITEMS = []
+        # self.INDEX = -1
 
         self.model_filtered = QSortFilterProxyModel()
         self.model_filtered.setSourceModel(self)
@@ -24,13 +24,13 @@ class Model(QStandardItemModel):
         self.model_filtered.setFilterFixedString(text)
 
 
-class PlaylistWidget(QWidget, Ui_PlaylistWidget):
+class WidgetPlaylist(QWidget, Ui_WidgetPlaylist):
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)
         self.setupUi(self)
-        self.__cnf_PlaylistWidget()
+        self.__cnf_WidgetPlaylist()
 
-    def __cnf_PlaylistWidget(self):
+    def __cnf_WidgetPlaylist(self):
         self.model = Model()
         self.model_filtered = self.model.model_filtered
         self.ltLista.setModel(self.model_filtered)
@@ -155,9 +155,4 @@ class PlaylistWidget(QWidget, Ui_PlaylistWidget):
         """selecciona el primer item"""
         self.selection_set_row(0)
 
-        
-        
-        
-
-        
         

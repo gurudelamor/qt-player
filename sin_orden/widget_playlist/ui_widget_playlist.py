@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'playlist_widget.ui'
+## Form generated from reading UI file 'ui_widget_playlist.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.9.1
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -16,33 +16,31 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QGridLayout, QLineEdit,
-    QListView, QPushButton, QSizePolicy, QVBoxLayout,
-    QWidget)
+    QListView, QPushButton, QSizePolicy, QWidget)
 import icons_rc
 
-class Ui_PlaylistWidget(object):
-    def setupUi(self, PlaylistWidget):
-        if not PlaylistWidget.objectName():
-            PlaylistWidget.setObjectName(u"PlaylistWidget")
-        PlaylistWidget.resize(363, 519)
-        self.verticalLayout = QVBoxLayout(PlaylistWidget)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(4, 4, 4, 4)
-        self.gridLayout = QGridLayout()
+class Ui_WidgetPlaylist(object):
+    def setupUi(self, WidgetPlaylist):
+        if not WidgetPlaylist.objectName():
+            WidgetPlaylist.setObjectName(u"WidgetPlaylist")
+        WidgetPlaylist.resize(297, 525)
+        self.gridLayout = QGridLayout(WidgetPlaylist)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.ltLista = QListView(PlaylistWidget)
+        self.gridLayout.setVerticalSpacing(6)
+        self.gridLayout.setContentsMargins(4, 4, 4, 4)
+        self.ltLista = QListView(WidgetPlaylist)
         self.ltLista.setObjectName(u"ltLista")
         self.ltLista.setDragDropMode(QAbstractItemView.DragDropMode.DragDrop)
 
         self.gridLayout.addWidget(self.ltLista, 0, 0, 1, 4)
 
-        self.lnBuscar = QLineEdit(PlaylistWidget)
+        self.lnBuscar = QLineEdit(WidgetPlaylist)
         self.lnBuscar.setObjectName(u"lnBuscar")
         self.lnBuscar.setMinimumSize(QSize(0, 30))
 
         self.gridLayout.addWidget(self.lnBuscar, 1, 0, 1, 4)
 
-        self.btPrimero = QPushButton(PlaylistWidget)
+        self.btPrimero = QPushButton(WidgetPlaylist)
         self.btPrimero.setObjectName(u"btPrimero")
         self.btPrimero.setMinimumSize(QSize(57, 0))
         self.btPrimero.setMaximumSize(QSize(16777215, 16777215))
@@ -54,7 +52,7 @@ class Ui_PlaylistWidget(object):
 
         self.gridLayout.addWidget(self.btPrimero, 2, 0, 1, 1)
 
-        self.btSubir = QPushButton(PlaylistWidget)
+        self.btSubir = QPushButton(WidgetPlaylist)
         self.btSubir.setObjectName(u"btSubir")
         self.btSubir.setMinimumSize(QSize(57, 0))
         self.btSubir.setMaximumSize(QSize(16777215, 16777215))
@@ -66,7 +64,7 @@ class Ui_PlaylistWidget(object):
 
         self.gridLayout.addWidget(self.btSubir, 2, 1, 1, 1)
 
-        self.btBajar = QPushButton(PlaylistWidget)
+        self.btBajar = QPushButton(WidgetPlaylist)
         self.btBajar.setObjectName(u"btBajar")
         self.btBajar.setMinimumSize(QSize(57, 0))
         self.btBajar.setMaximumSize(QSize(16777215, 16777215))
@@ -78,19 +76,21 @@ class Ui_PlaylistWidget(object):
 
         self.gridLayout.addWidget(self.btBajar, 2, 2, 1, 1)
 
-        self.btUltimo = QPushButton(PlaylistWidget)
+        self.btUltimo = QPushButton(WidgetPlaylist)
         self.btUltimo.setObjectName(u"btUltimo")
         self.btUltimo.setMinimumSize(QSize(57, 0))
         self.btUltimo.setMaximumSize(QSize(16777215, 16777215))
         self.btUltimo.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.btUltimo.setIcon(icon)
+        icon3 = QIcon()
+        icon3.addFile(u":/views/icons/skip-dow.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btUltimo.setIcon(icon3)
         self.btUltimo.setIconSize(QSize(16, 16))
         self.btUltimo.setAutoRepeatDelay(299)
         self.btUltimo.setFlat(True)
 
         self.gridLayout.addWidget(self.btUltimo, 2, 3, 1, 1)
 
-        self.widgetBotones = QWidget(PlaylistWidget)
+        self.widgetBotones = QWidget(WidgetPlaylist)
         self.widgetBotones.setObjectName(u"widgetBotones")
         self.gridBotones = QGridLayout(self.widgetBotones)
         self.gridBotones.setObjectName(u"gridBotones")
@@ -124,23 +124,20 @@ class Ui_PlaylistWidget(object):
         self.gridLayout.addWidget(self.widgetBotones, 3, 0, 1, 4)
 
 
-        self.verticalLayout.addLayout(self.gridLayout)
+        self.retranslateUi(WidgetPlaylist)
 
-
-        self.retranslateUi(PlaylistWidget)
-
-        QMetaObject.connectSlotsByName(PlaylistWidget)
+        QMetaObject.connectSlotsByName(WidgetPlaylist)
     # setupUi
 
-    def retranslateUi(self, PlaylistWidget):
-        PlaylistWidget.setWindowTitle(QCoreApplication.translate("PlaylistWidget", u"Form", None))
-        self.lnBuscar.setPlaceholderText(QCoreApplication.translate("PlaylistWidget", u"Buscar ...", None))
+    def retranslateUi(self, WidgetPlaylist):
+        WidgetPlaylist.setWindowTitle(QCoreApplication.translate("WidgetPlaylist", u"Form", None))
+        self.lnBuscar.setPlaceholderText(QCoreApplication.translate("WidgetPlaylist", u"Buscar ...", None))
         self.btPrimero.setText("")
         self.btSubir.setText("")
         self.btBajar.setText("")
         self.btUltimo.setText("")
-        self.btAgregar.setText(QCoreApplication.translate("PlaylistWidget", u"A\u00f1adir", None))
-        self.btEliminar.setText(QCoreApplication.translate("PlaylistWidget", u"Eliminar", None))
-        self.btOrdenar.setText(QCoreApplication.translate("PlaylistWidget", u"Ordenar", None))
+        self.btAgregar.setText(QCoreApplication.translate("WidgetPlaylist", u"A\u00f1adir", None))
+        self.btEliminar.setText(QCoreApplication.translate("WidgetPlaylist", u"Eliminar", None))
+        self.btOrdenar.setText(QCoreApplication.translate("WidgetPlaylist", u"Ordenar", None))
     # retranslateUi
 
