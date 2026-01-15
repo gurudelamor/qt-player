@@ -1,0 +1,18 @@
+formats:
+  video:
+  - '*.mp4'
+  - '*.avi'
+  - '*.mkv'
+  - '*.mov'
+  - '*.wmv'
+  - '*.flv'
+  - '*.ts'
+  - '*.webm'
+  audio:
+  - '*.mp3'
+  - '*.wav'
+  - '*.ogg'
+  - '*.flac'
+  - '*.aac'
+  - '*.m4a'
+

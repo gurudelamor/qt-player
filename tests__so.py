@@ -4,6 +4,7 @@ from PySide6.QtGui import QIcon
 from sin_orden.window_frameless import WindowFrameless
 from sin_orden.widget_playlist import WidgetPlaylist
 from sin_orden.main_player import MainPlayer
+from sin_orden.dialog_files import DialogFiles
 
 
 class TestVentanaFrameless(WindowFrameless):
@@ -53,6 +54,23 @@ class TestWidgets(QWidget):
         for text in items:
             self.wplaylist.append(text)
 
+    def test_dialog(self):
+        self.resize(350, 250)
+        self.dg = DialogFiles()
+        self.btn = QPushButton('open Dialog')
+        self.vly.addWidget(self.btn)
+        self.btn.clicked.connect(self.show_dialog)
+
+    def show_dialog(self):
+        self.dg.show_dialog_select_files()
+        # self.dg.show_dialog_select_dir()
+
+        selected_files = self.dg.get_selected_files()
+        for path in selected_files:
+            print(path)
+        for msg in self.dg._state:
+            print(msg)
+
 
 class TestMainPlayer(MainPlayer):
     def __init__(self, *args, **kw):
@@ -78,6 +96,9 @@ if __name__ == '__main__':
 
     # TEST MAINPLAYER
     mv = TestMainPlayer()
+
+    # TEST DIALOG FILES
+    # mv.test_dialog()
 
     
     mv.show()

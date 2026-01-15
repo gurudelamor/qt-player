@@ -155,4 +155,10 @@ class WidgetPlaylist(QWidget, Ui_WidgetPlaylist):
         """selecciona el primer item"""
         self.selection_set_row(0)
 
+    def set_paths(self, paths:list):
+        """asigna una lista de archivos"""
+        for path in paths:
+            self.append(path)
+
+
         

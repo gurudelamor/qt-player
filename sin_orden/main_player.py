@@ -7,6 +7,7 @@ from sin_orden.widget_info import WidgetInfo
 from sin_orden.widget_playlist import  WidgetPlaylist
 from sin_orden.widget_player import WidgetPlayer
 from sin_orden.widget_control import WidgetControl
+from sin_orden.dialog_files import DialogFiles
 
 
 class MainPlayer(WindowFrameless):
@@ -34,6 +35,8 @@ class MainPlayer(WindowFrameless):
         self.vly_content.addWidget(self.wcontrol)
         self.vly_content.setStretch(0, 10)
         self.vly_content.setStretch(2, 1)
+        self.wcontrol.btArchivo.clicked.connect(self.showDialogFiles)
+        self.wcontrol.btCarpeta.clicked.connect(self.showDialogDir)
 
 
     def _hotkeysPlayer(self):
@@ -49,3 +52,23 @@ class MainPlayer(WindowFrameless):
     def showInfo(self, show:bool=True):
         self.winfo.setHidden(show)
 
+    def _dialogSelect(self, dir:bool=False):
+        dg = DialogFiles()
+        try:
+            if dir:dg.show_dialog_select_dir()
+            else:dg.show_dialog_select_files()
+
+            selected = dg.get_selected_files()
+            if selected:
+                self.wplaylist.set_paths(selected)
+        except Exception as e:
+            self.winfo.error('Dialog Files', e)
+        finally:
+            for msg in dg._state:
+                self.winfo.msg_n(msg, num=6, br=True)
+
+    def showDialogFiles(self):
+        self._dialogSelect()
+    
+    def showDialogDir(self):
+        self._dialogSelect(dir=True)
